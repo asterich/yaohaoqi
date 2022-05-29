@@ -6,15 +6,14 @@ from wx import MessageBox
 
 __all__ = ["Data"]
 
+
 class Data(object):
 
-#   学生名单用.xlsx格式存的
-    
+    #   学生名单用.xlsx格式存的
 
     def __init__(self):
         self.openFileFlg = False
-        self.openFile("./学生名单.xlsx")
-
+        # self.openFile("./学生名单.xlsx")
 
     def openFile(self, dirname_):
         try:
@@ -40,7 +39,6 @@ class Data(object):
             self.vstNum = 0
             self.shuffledListGen = self.createGen()
 
-
     def getNamesByRow_1(self):
         it = iter(self.ws["1"])
         nameCell = self.ws["A1"]
@@ -60,9 +58,10 @@ class Data(object):
             col = self.ws[chr(nameCell.column + 65 - 1)]
             length = len(col)
             return col[1:length + 1]
-                
+
 
 #   正常模式
+
     def getRandName_Normal(self):
         num = rd.randint(1, self.stuNum)
         nameString = self.nameTuple[num - 1].value
@@ -70,6 +69,7 @@ class Data(object):
 
 
 #   无重复模式
+
     def createGen(self):
         shuffledList = list(self.nameTuple).copy()
         rd.shuffle(shuffledList)
